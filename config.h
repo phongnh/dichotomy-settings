@@ -3,6 +3,9 @@
 #ifndef CONFIG_PHONGNH_H_
 #define CONFIG_PHONGNH_H_
 
+// Display different led colors when changing layers
+// #define ENABLE_LAYER_LEDS
+
 // Copy from ErgoDox EZ
 #define MOUSEKEY_INTERVAL    20
 #define MOUSEKEY_DELAY       0
