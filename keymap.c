@@ -15,14 +15,18 @@ enum dichotomy_keycodes {
 
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
+#define LWR_TAB LT(_LOWER, KC_TAB)  // Turn on _LOWER layer when held, Tab when tapped
+#define RSE_BSP LT(_RAISE, KC_TAB)  // Turn on _RAISE layer when held, Tab when tapped
 #define CAG_GRV LCAG_T(KC_GRV)      // Left Control+Alt+Gui when held, ` when tapped
+#define CAG_TAB LCAG_T(KC_TAB)      // Left Control+Alt+Gui when held, Tab when tapped
+#define SFT_GRV LSFT_T(KC_GRV)      // Left Shift when held, ` when tapped
 #define CTL_ESC LCTL_T(KC_ESC)      // Left Control when held, Esc when tapped
 #define CTL_Z   LCTL_T(KC_Z)        // Left Control when held, z when tapped
 #define CTL_SLS LCTL_T(KC_SLSH)     // Left Control when held, / when tapped
 #define GUI_QUO RGUI_T(KC_QUOT)     // Right Gui when held, " when tapped
-#define MOU_SCL LT(_MOUSE, KC_SCLN) // Turn on _MOUSE layer when held, ; when held
-#define GUI_EQL LGUI_T(KC_EQL)      // Left Gui when held, = when held
-#define GUI_MIN RGUI_T(KC_MINS)     // Right Gui when held, - when held
+#define MOU_SCL LT(_MOUSE, KC_SCLN) // Turn on _MOUSE layer when held, ; when tapped
+#define GUI_EQL LGUI_T(KC_EQL)      // Left Gui when held, = when tapped
+#define GUI_MIN RGUI_T(KC_MINS)     // Right Gui when held, - when tapped
 
 #define BACKLIGHT_LEVELS 1
 #define RED_BRIGHTNESS   1
@@ -31,19 +35,19 @@ enum dichotomy_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT(
-    CAG_GRV,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+    CAG_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
     CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,           KC_H,    KC_J,    KC_K,    KC_L,    MOU_SCL, GUI_QUO,
-    KC_LSFT,  CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,           KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT,
-                                KC_LALT, GUI_EQL, KC_TAB,         KC_BSPC, GUI_MIN, KC_RALT,
-                       KC_BTN3, KC_FN1,  LOWER,   KC_SPC,         KC_ENT,  RAISE,   KC_FN1,  KC_BTN3
+    SFT_GRV,  CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,           KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT,
+                                KC_LALT, GUI_EQL, LOWER,          RAISE,   GUI_MIN, KC_RALT,
+                       KC_BTN3, KC_FN1,  LWR_TAB, KC_SPC,         KC_ENT,  RSE_BSP, KC_FN1,  KC_BTN3
 ),
 
 [_LOWER] = LAYOUT(
     KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
     KC_GRV,  _______, KC_LEFT, KC_RGHT, KC_UP,   KC_LBRC,        KC_RBRC, KC_MINS, KC_EQL,  KC_LPRN, KC_RPRN, KC_EQL,
     _______, _______, _______, _______, KC_DOWN, KC_LCBR,        KC_RCBR, KC_UNDS, KC_PLUS, _______, _______, _______,
-                               _______, _______, _______,        KC_DEL,  _______, _______,
-                      _______, _______, LOWER,   _______,        _______, RAISE,   _______, _______
+                               _______, _______, _______,        _______, _______, _______,
+                      _______, _______, LOWER,   _______,        KC_DEL,  RAISE,   _______, _______
 ),
 
 [_RAISE] = LAYOUT(
