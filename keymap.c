@@ -15,8 +15,10 @@ enum dichotomy_keycodes {
 
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
-#define LWR_TAB LT(_LOWER, KC_TAB)  // Turn on _LOWER layer when held, Tab when tapped
-#define RSE_BSP LT(_RAISE, KC_BSPC) // Turn on _RAISE layer when held, Backspace when tapped
+#define LWR_SPC LT(_LOWER, KC_SPC)  // Turn on _LOWER layer when held, Space when tapped
+#define LWR_BSP LT(_LOWER, KC_BSPC) // Turn on _LOWER layer when held, Backspace when tapped
+#define RSE_ENT LT(_RAISE, KC_ENT)  // Turn on _RAISE layer when held, Enter when tapped
+#define RSE_TAB LT(_RAISE, KC_TAB)  // Turn on _RAISE layer when held, Tab when tapped
 #define CAG_GRV LCAG_T(KC_GRV)      // Left Control+Alt+Gui when held, ` when tapped
 #define CAG_TAB LCAG_T(KC_TAB)      // Left Control+Alt+Gui when held, Tab when tapped
 #define SFT_GRV LSFT_T(KC_GRV)      // Left Shift when held, ` when tapped
@@ -39,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,           KC_H,    KC_J,    KC_K,    KC_L,    MOU_SCL, GUI_QUO,
     SFT_GRV,  CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,           KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT,
                                 KC_LALT, GUI_EQL, LOWER,          RAISE,   GUI_MIN, KC_RALT,
-                       KC_BTN3, KC_FN0,  LWR_TAB, KC_SPC,         KC_ENT,  RSE_BSP, KC_FN0,  KC_BTN3
+                       KC_BTN3, KC_FN0,  LWR_BSP, KC_SPC,         KC_ENT,  RSE_TAB, KC_FN0,  KC_BTN3
 ),
 
 [_LOWER] = LAYOUT(
