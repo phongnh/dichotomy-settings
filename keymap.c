@@ -5,7 +5,7 @@ enum dichotomy_layers {
     _LOWER,
     _RAISE,
     _ADJUST,
-    _NUMPAD,
+    _SYMBOL,
     _MOUSE,
 };
 
@@ -16,23 +16,30 @@ enum dichotomy_keycodes {
 
 #define LOWER   MO(_LOWER)
 #define RAISE   MO(_RAISE)
-#define LWR_SPC LT(_LOWER, KC_SPC)  // Turn on _LOWER layer when held, Space when tapped
-#define LWR_BSP LT(_LOWER, KC_BSPC) // Turn on _LOWER layer when held, Backspace when tapped
-#define LWR_DEL LT(_LOWER, KC_DEL)  // Turn on _LOWER layer when held, Del when tapped
-#define RSE_ENT LT(_RAISE, KC_ENT)  // Turn on _RAISE layer when held, Enter when tapped
-#define RSE_TAB LT(_RAISE, KC_TAB)  // Turn on _RAISE layer when held, Tab when tapped
-#define RSE_DEL LT(_RAISE, KC_DEL)  // Turn on _RAISE layer when held, Del when tapped
-#define CAG_GRV LCAG_T(KC_GRV)      // Left Control+Alt+Gui when held, ` when tapped
-#define CAG_TAB LCAG_T(KC_TAB)      // Left Control+Alt+Gui when held, Tab when tapped
-#define SFT_GRV LSFT_T(KC_GRV)      // Left Shift when held, ` when tapped
-#define CTL_ESC LCTL_T(KC_ESC)      // Left Control when held, Esc when tapped
-#define CTL_Z   LCTL_T(KC_Z)        // Left Control when held, z when tapped
-#define CTL_SLS LCTL_T(KC_SLSH)     // Left Control when held, / when tapped
-#define GUI_QUO RGUI_T(KC_QUOT)     // Right Gui when held, " when tapped
-#define MOU_SCL LT(_MOUSE, KC_SCLN) // Turn on _MOUSE layer when held, ; when tapped
-#define GUI_EQL LGUI_T(KC_EQL)      // Left Gui when held, = when tapped
-#define GUI_MIN RGUI_T(KC_MINS)     // Right Gui when held, - when tapped
-#define ALT_MIN LALT_T(KC_MINS)     // Right Gui when held, - when tapped
+#define LWR_SPC LT(_LOWER, KC_SPC)      // Turn on _LOWER layer when held, Space when tapped
+#define LWR_BSP LT(_LOWER, KC_BSPC)     // Turn on _LOWER layer when held, Backspace when tapped
+#define LWR_DEL LT(_LOWER, KC_DEL)      // Turn on _LOWER layer when held, Del when tapped
+#define RSE_ENT LT(_RAISE, KC_ENT)      // Turn on _RAISE layer when held, Enter when tapped
+#define RSE_TAB LT(_RAISE, KC_TAB)      // Turn on _RAISE layer when held, Tab when tapped
+#define RSE_DEL LT(_RAISE, KC_DEL)      // Turn on _RAISE layer when held, Del when tapped
+#define NUM_LBR LT(_SYMBOL, KC_LBRC)    // Turn on _SYMBOL layer when held, [ when tapped
+#define NUM_RBR LT(_SYMBOL, KC_RBRC)    // Turn on _SYMBOL layer when held, ] when tapped
+#define MOU_SCL LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped
+#define CAG_GRV LCAG_T(KC_GRV)          // Left Control+Alt+Gui when held, ` when tapped
+#define CAG_TAB LCAG_T(KC_TAB)          // Left Control+Alt+Gui when held, Tab when tapped
+#define SFT_GRV LSFT_T(KC_GRV)          // Left Shift when held, ` when tapped
+#define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
+#define CTL_Z   LCTL_T(KC_Z)            // Left Control when held, z when tapped
+#define CTL_SLS LCTL_T(KC_SLSH)         // Left Control when held, / when tapped
+#define GUI_EQL LGUI_T(KC_EQL)          // Left Gui when held, = when tapped
+#define GUI_MIN RGUI_T(KC_MINS)         // Right Gui when held, - when tapped
+#define GUI_QUO RGUI_T(KC_QUOT)         // Right Gui when held, " when tapped
+#define GUI_LBR LGUI_T(KC_LBRC)         // Left Gui when held, [ when tapped
+#define GUI_RBR RGUI_T(KC_RBRC)         // Right Gui when held, ] when tapped
+#define ALT_EQL LALT_T(KC_EQL)          // Left Alt when held, = when tapped
+#define ALT_MIN RALT_T(KC_MINS)         // Right Alt when held, - when tapped
+#define ALT_GRV LALT_T(KC_GRV)          // Left Alt when held, ` when tapped
+#define ALT_BSL RALT_T(KC_BSLS)         // Right Alt when held, \ when tapped
 
 #define BACKLIGHT_LEVELS 1
 #define RED_BRIGHTNESS   1
@@ -41,16 +48,16 @@ enum dichotomy_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT(
-    CAG_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+    CAG_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     CTL_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,           KC_H,    KC_J,    KC_K,    KC_L,    MOU_SCL, GUI_QUO,
     KC_LSFT,  CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,           KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT,
-                                KC_LALT, GUI_EQL, KC_FN2,         KC_FN2,  GUI_MIN, KC_RALT,
-                       KC_BTN3, KC_FN1,  LWR_BSP, LWR_SPC,        RSE_ENT, RSE_TAB, KC_FN1,  KC_BTN3
+                                ALT_GRV, GUI_EQL, NUM_LBR,        NUM_RBR, GUI_MIN, ALT_BSL,
+                       KC_BTN3, KC_FN1,  LWR_BSP, LWR_SPC,        RSE_ENT, RSE_TAB, KC_FN2,  KC_BTN3
 ),
 
 [_LOWER] = LAYOUT(
     KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-    KC_GRV,  _______, KC_LEFT, KC_RGHT, KC_UP,   KC_LBRC,        KC_RBRC, KC_MINS, KC_EQL,  KC_LPRN, KC_RPRN, KC_EQL,
+    KC_GRV,  _______, KC_LEFT, KC_RGHT, KC_UP,   KC_LBRC,        KC_RBRC, KC_MINS, KC_EQL,  KC_LPRN, KC_RPRN, KC_BSLS,
     _______, _______, _______, _______, KC_DOWN, KC_LCBR,        KC_RCBR, KC_UNDS, KC_PLUS, _______, _______, _______,
                                _______, _______, _______,        _______, _______, _______,
                       _______, _______, LOWER,   _______,        RSE_DEL, RAISE,   _______, _______
@@ -72,10 +79,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       _______, _______, _______, _______,        _______, _______, _______, _______
 ),
 
-[_NUMPAD] = LAYOUT(
-    _______, _______, _______, _______, _______, _______,        KC_PAST, KC_P7,   KC_P8,   KC_P9,    KC_PMNS, KC_BSPC,
-    _______, _______, _______, _______, _______, _______,        KC_PSLS, KC_P4,   KC_P5,   KC_P6,    KC_PPLS, KC_DEL,
-    _______, _______, _______, _______, _______, _______,        KC_P0,   KC_P1,   KC_P2,   KC_P3,    KC_PDOT, KC_PENT,
+[_SYMBOL] = LAYOUT(
+    _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,        KC_PAST, KC_P7,   KC_P8,   KC_P9,    KC_PMNS, KC_BSPC,
+    _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,         KC_PSLS, KC_P4,   KC_P5,   KC_P6,    KC_PPLS, KC_DEL,
+    _______, KC_PERC, KC_CIRC, KC_LCBR, KC_RCBR, KC_TILD,        KC_P0,   KC_P1,   KC_P2,   KC_P3,    KC_PDOT, KC_PENT,
                                _______, _______, _______,        _______, _______, _______,
                       _______, _______, _______, _______,        _______, _______, _______, _______
 ),
@@ -92,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
     [1] = ACTION_LAYER_TAP_TOGGLE(_MOUSE),  // FN1 - Momentary Layer Symbols (_MOUSE)
-    [2] = ACTION_LAYER_TAP_TOGGLE(_NUMPAD), // FN2 - Momentary Layer Symbols (_NUMPAD)
+    [2] = ACTION_LAYER_TAP_TOGGLE(_SYMBOL), // FN2 - Momentary Layer Symbols (_SYMBOL)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -133,7 +140,7 @@ uint32_t layer_state_set_user(uint32_t state) {
     case _ADJUST:
         set_led_yellow();
         break;
-    case _NUMPAD:
+    case _SYMBOL:
         set_led_magenta();
         break;
     case _MOUSE:
