@@ -17,7 +17,6 @@ enum dichotomy_keycodes {
 #define RAISE   MO(_RAISE)
 #define MOU_SCL LT(_MOUSE, KC_SCLN)     // Turn on _MOUSE layer when held, ; when tapped
 #define CAG_TAB LCAG_T(KC_TAB)          // Left Control+Alt+Gui when held, Tab when tapped
-#define SFT_GRV LSFT_T(KC_GRV)          // Left Shift when held, ` when tapped
 #define CTL_ESC LCTL_T(KC_ESC)          // Left Control when held, Esc when tapped
 #define CTL_Z   LCTL_T(KC_Z)            // Left Control when held, z when tapped
 #define CTL_SLS LCTL_T(KC_SLSH)         // Left Control when held, / when tapped
@@ -25,8 +24,11 @@ enum dichotomy_keycodes {
 #define GUI_QUO RGUI_T(KC_QUOT)         // Right Gui when held, " when tapped
 #define GUI_LBR LGUI_T(KC_LBRC)         // Left Gui when held, [ when tapped
 #define GUI_RBR RGUI_T(KC_RBRC)         // Right Gui when held, ] when tapped
+#define GUI_F11 RGUI_T(KC_F11)          // Right Gui when held, F11 when tapped
 #define ALT_LCB LALT_T(KC_LCBR)         // Left Alt when held, { when tapped
 #define ALT_RCB RALT_T(KC_RCBR)         // Right Alt when held, } when tapped
+#define SFT_GRV RSFT_T(KC_GRV)          // Right Shift when held, ` when tapped
+#define SFT_F12 RSFT_T(KC_F12)          // Right Shift when held, F12 when tapped
 #define SAV_PIC LSFT(LGUI(KC_4))        // Shift+Command+4: Save picture of selected area to the clipboard (macOS only)
 #define COP_PIC LCTL(LSFT(LGUI(KC_4)))  // Ctrl+Shift+Command+4: Copy picture of selected area to the clipboard (macOS only)
 
@@ -39,31 +41,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT(
     CAG_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,           KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,           KC_H,    KC_J,    KC_K,    KC_L,    MOU_SCL, GUI_QUO,
-    KC_LSFT, CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,           KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, KC_RSFT,
+    KC_LSFT, CTL_Z,   KC_X,    KC_C,    KC_V,    KC_B,           KC_N,    KC_M,    KC_COMM, KC_DOT,  CTL_SLS, SFT_GRV,
                                KC_LCTL, ALT_LCB, GUI_LBR,        GUI_RBR, ALT_RCB, KC_RCTL,
                       KC_BTN3, QWERTY,  LOWER,   KC_SPC,         KC_ENT,  RAISE,   MOUSE,   KC_BTN3
 ),
 
 [_LOWER] = LAYOUT(
     KC_EQL,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS,
-    CTL_GRV, _______, KC_LEFT, KC_RGHT, KC_UP,   KC_LBRC,        KC_RBRC, KC_MINS, KC_EQL,  KC_LPRN, KC_RPRN, KC_BSLS,
-    _______, _______, _______, _______, KC_DOWN, KC_LCBR,        KC_RCBR, KC_UNDS, KC_PLUS, _______, _______, _______,
+    CTL_GRV, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,          KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  GUI_F11,
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SFT_F12,
                                _______, _______, _______,        _______, _______, _______,
                       _______, _______, _______, _______,        _______, _______, _______, _______
 ),
 
 [_RAISE] = LAYOUT(
     KC_PLUS, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS,
-    KC_TILD, COP_PIC, _______, _______, KC_PGUP, KC_UNDS,        KC_EQL,  KC_HOME, _______, KC_LBRC, KC_RBRC, KC_PIPE,
-    _______, SAV_PIC, _______, _______, KC_PGDN, KC_MINS,        KC_PLUS, KC_END,  _______, KC_LCBR, KC_RCBR, _______,
+    KC_TILD, COP_PIC, KC_LEFT, KC_RGHT, KC_UP,   KC_PGUP,        KC_MINS, KC_EQL,  KC_LCBR, KC_RCBR, KC_PIPE, KC_GRV,
+    _______, SAV_PIC, XXXXXXX, XXXXXXX, KC_DOWN, KC_PGDN,        KC_UNDS, KC_PLUS, KC_LBRC, KC_RBRC, KC_BSLS, KC_TILD,
                                _______, _______, _______,        _______, _______, _______,
                       _______, _______, _______, _______,        _______, _______, _______, _______
 ),
 
 [_ADJUST] = LAYOUT(
-    KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,          KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
-    RESET,   _______, _______, _______, _______, QWERTY,         MOUSE,   _______, _______, _______, _______, KC_F12,
-    _______, _______, _______, _______, _______, AG_NORM,        AG_SWAP, _______, _______, _______, _______, _______,
+    RESET,   _______, _______, _______, _______, QWERTY,         MOUSE,   _______, _______, _______, _______, _______,
+    KC_CAPS, _______, _______, _______, _______, AG_NORM,        AG_SWAP, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______,        _______, _______, _______, _______, _______, _______,
                                _______, _______, _______,        _______, _______, _______,
                       _______, _______, _______, _______,        _______, _______, _______, _______
 ),
